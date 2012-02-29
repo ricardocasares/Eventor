@@ -49,6 +49,12 @@
 
 		function logout()
 		{
+			$this->connected = FALSE;
+			$this->session->unset_userdata('id');
+			$this->session->unset_userdata('admin');
+			$this->session->unset_userdata('username');
+			$this->session->unset_userdata('email');
+			$this->session->unset_userdata('lang');
 			$this->session->sess_destroy();
 			redirect('');
 		}
