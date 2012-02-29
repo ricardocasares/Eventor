@@ -7,7 +7,7 @@
     <meta name="author" content="">
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=1;" />
 	<meta name="HandheldFriendly" content="True" />
-	<?=meta(array('http-equiv' => 'cache-control', 'content' => 'no-cache'))?>
+	<meta http-equiv="cache-control" content="no-cache" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
