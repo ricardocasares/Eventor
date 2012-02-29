@@ -85,7 +85,7 @@
 
                 var map = new google.maps.Map(mapDiv.get(0), gMapOptions);
 
-				var myIcon = new google.maps.MarkerImage("/eventor/static/img/pin.png", null, null, null, new google.maps.Size(37,34));
+				var myIcon = new google.maps.MarkerImage("/static/img/pin.png", null, null, null, new google.maps.Size(37,34));
 
                 var marker = new google.maps.Marker({
                     title: settings.gMapMarkerTitle,
