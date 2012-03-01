@@ -15,7 +15,7 @@
 }
 td ul.sortable {
 	display:block;
-	height:100px;
+	height:100px !important;
 	overflow-y:auto;
 }
 .calendar tbody tr th a:hover {
