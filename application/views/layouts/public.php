@@ -14,11 +14,11 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <?=link_tag('static/css/application.css')?>
-     <?=link_tag('static/css/calendar.css')?>
-     <?=link_tag('static/css/jquery.miniColors.css')?>
-    <?=link_tag('static/css/bootstrap.css')?>
-    <?=link_tag('static/css/bootstrap-responsive.css')?>
+    <?=link_tag('static/css/application.css?v='.now())?>
+	<?=link_tag('static/css/calendar.css?v='.now())?>
+	<?=link_tag('static/css/jquery.miniColors.css?v='.now())?>
+	<?=link_tag('static/css/bootstrap.css?v='.now())?>
+	<?=link_tag('static/css/bootstrap-responsive.css?v='.now())?>
     <style type="text/css">
     	body {
     		padding:20px;
