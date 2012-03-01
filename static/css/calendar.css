@@ -13,7 +13,11 @@
 	padding:10px;
 	background: #f9f9f9;
 }
-
+td ul.sortable {
+	display:block;
+	height:100px;
+	overflow-y:auto;
+}
 .calendar tbody tr th a:hover {
 	border:0;
 }
@@ -38,8 +42,7 @@
 .calendar a:hover { color: #FFF; text-decoration:none; }
 
 .day_listing {
-	float:right;
-	position:relative;
+	display:block;
 	font-weight:bold;
 	text-align:right;
 }

@@ -7,7 +7,6 @@
     <meta name="author" content="">
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=1;" />
 	<meta name="HandheldFriendly" content="True" />
-	<meta http-equiv="cache-control" content="no-cache" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -88,12 +87,13 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="<?=site_url('static/js/jquery-1.7.1.min.js')?>"></script>
+    <script type="text/javascript" src="<?=site_url('static/js/jquery-ui-1.8.18.custom.min.js')?>"></script>
     <script type="text/javascript" src="<?=site_url('static/js/bootstrap.min.js')?>"></script>
     <script type="text/javascript" src="<?=site_url('static/js/jquery.miniColors.min.js')?>"></script>
     <script type="text/javascript" src="<?=site_url('static/js/jquery.geolocationpicker.js')?>"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-
+    		$("fieldset input:first").focus();
     		$('.add').live('click',function(e){
 				e.preventDefault();
 				$('.clone:first').clone().appendTo('#log');
@@ -144,8 +144,24 @@
 					}).success(function() { $('input:text:visible:first').focus(); });
 				}
 			});
+			$('.sortable').sortable({
+				connectWith: '.sortable',
+				helper: 'original',
+				stop: function(event,ui){
+					var event = parseInt(ui.item.find('a').attr('id'));
+					var day = parseInt(ui.item.parents('td:first').find('.day_listing').html());
+					var title = ui.item.find('a').text();
+					ui.item.find('a').text('saving...');
+					$.ajax({
+						type: "POST",
+						url: "<?=site_url('events/drag')?>",
+						data: {id: event, day: day}
+					}).done(function( msg ) {
+						ui.item.find('a').text(msg);
+					});
+				}
+			}).disableSelection();
 		});
     </script>
   </body>
 </html>
-

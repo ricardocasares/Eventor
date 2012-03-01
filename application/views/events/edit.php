@@ -6,7 +6,7 @@
 	<div class="control-group <?=(isset($errors['title'])?'error':'')?>">
 		<?=form_label('Event title','title')?>
 		<div class="controls">
-			<?=form_input('title',isset($_POST['title']) ? $_POST['title'] : $e->title,'id="title"')?>
+			<?=form_input('title',isset($_POST['title']) ? $_POST['title'] : $e->title,'id="title" index="1"')?>
 			<span class="help-inline"><?php echo isset($errors['title']) ? $errors['title'] : '<span class="label label-important">required</span> Enter event title'; ?></span>
 		</div>
 	</div>
@@ -21,18 +21,18 @@
 	<div class="control-group <?=(isset($errors['start'])?'error':'')?>">
 		<?=form_label('Start date','start')?>
 		<div class="controls">
-			<?=form_input('sday',isset($_POST['sday']) ? $_POST['sday'] : $sday,'id="start" class="input-mini" placeholder="Day"')?>
-			<?=form_input('smonth',isset($_POST['smonth']) ? $_POST['smonth'] : $smonth,'class="input-mini" placeholder="Month"')?>
-			<?=form_input('syear',isset($_POST['syear']) ? $_POST['syear'] : $syear,'class="input-mini" placeholder="Year"')?>
+			<?=form_input('sday',isset($_POST['sday']) ? $_POST['sday'] : $sday,'id="start" class="input-mini" placeholder="DD"')?>
+			<?=form_input('smonth',isset($_POST['smonth']) ? $_POST['smonth'] : $smonth,'class="input-mini" placeholder="MM"')?>
+			<?=form_input('syear',isset($_POST['syear']) ? $_POST['syear'] : $syear,'class="input-mini" placeholder="YYYY"')?>
 			<span class="help-inline"><?php echo isset($errors['start']) ? $errors['start'] : '<span class="label label-important">required</span> Enter event start date'; ?></span>
 		</div>
 	</div>
 	<div class="control-group <?=(isset($errors['end'])?'error':'')?>">
 		<?=form_label('End date','end')?>
 		<div class="controls">
-			<?=form_input('eday',isset($_POST['eday']) ? $_POST['eday'] : $eday,'id="end" class="input-mini" placeholder="Day"')?>
-			<?=form_input('emonth',isset($_POST['emonth']) ? $_POST['emonth'] : $smonth,'class="input-mini" placeholder="Month"')?>
-			<?=form_input('eyear',isset($_POST['eyear']) ? $_POST['eyear'] : $eyear,'class="input-mini" placeholder="Year"')?>
+			<?=form_input('eday',isset($_POST['eday']) ? $_POST['eday'] : $eday,'id="end" class="input-mini" placeholder="DD"')?>
+			<?=form_input('emonth',isset($_POST['emonth']) ? $_POST['emonth'] : $smonth,'class="input-mini" placeholder="MM"')?>
+			<?=form_input('eyear',isset($_POST['eyear']) ? $_POST['eyear'] : $eyear,'class="input-mini" placeholder="YYYY"')?>
 			<span class="help-inline"><?php echo isset($errors['end']) ? $errors['end'] : 'Enter event end date'; ?></span>
 		</div>
 	</div>

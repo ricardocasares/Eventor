@@ -13,8 +13,10 @@ $config['template'] = '
 	{week_day_cell}<th class="day_header"><span class="label">{week_day}</span></th>{/week_day_cell}
 	{cal_cell_content}<div class="day_listing">{day}</div>{content}{/cal_cell_content}
 	{cal_cell_content_today}<div class="today"><div class="day_listing">{day}</div> {content}</div>{/cal_cell_content_today}
-	{cal_cell_no_content}<span class="day_listing">{day}</span>{/cal_cell_no_content}
-	{cal_cell_no_content_today}<div class="today"><span class="day_listing">{day}</span></div>{/cal_cell_no_content_today}
+	{cal_cell_no_content}<span class="day_listing">{day}</span> <div>
+		<ul class="sortable unstyled"></ul>
+	</div>{/cal_cell_no_content}
+	{cal_cell_no_content_today}<div class="today"><span class="day_listing">{day}</span><div><ul class="sortable unstyled"></ul></div></div>{/cal_cell_no_content_today}
 ';
 
 /* End of file calendar.php */

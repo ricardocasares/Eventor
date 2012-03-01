@@ -31,7 +31,7 @@
 			{
 				$this->allow = array(
 					'auth' => array('login','do_login','logout'),
-					'events' => array('upcoming','calendar','index','show','add','edit','delete','search','do_search'),
+					'events' => array('upcoming','drag','calendar','index','show','add','edit','delete','search','do_search'),
 					'categories' => array('index','add','edit','delete')
 				);
 			}
@@ -39,7 +39,7 @@
 			{
 				$this->allow = array(
 					'auth' => array('login','do_login','logout'),
-					'events' => array('upcoming','calendar','index','show','add','edit','search','do_search'),
+					'events' => array('upcoming','drag','calendar','index','show','add','edit','search','do_search'),
 					'categories' => array('index','add','edit')
 				);
 			}

@@ -13,6 +13,24 @@
 			$this->data['upcoming'] = $this->data['upcoming'] = $e->where('DATEDIFF(DATE(start),DATE(NOW())) <=',7)->get_paged_iterated($page,$this->per_page);
 		}
 
+		function drag()
+		{
+			$this->layout = FALSE;
+			$this->view = FALSE;
+			if($this->input->post('id') && $this->input->post('day'))
+			{
+				$e = new Event($this->input->post('id'));
+				list($year,$month,$day) = explode('-',$e->start);
+				$e->start = $year.'-'.$month.'-'.$this->input->post('day');
+				if($e->save())
+				{
+					$this->load->helper('text');
+					echo ellipsize($e->title, 20,1,'..');
+				}
+				else echo "Error: Try again";
+			}
+		}
+
 		function calendar($y = FALSE , $m = FALSE)
 		{
 			if(!$this->connected) $this->layout = "layouts/public";
@@ -27,12 +45,12 @@
 
 			$ul = array();
 			foreach($events as $e) {
-				$ul[$e->day][] = '<span class="label" style="background:'.$e->category->color.';">'.anchor('events/show/'.$e->id,ellipsize($e->title, 14,1,'..'),'class="tip" data-toggle="modal" data-original-title="'.$e->title.'"').'</span>';
+				$ul[$e->day][] = '<span class="label" style="background:'.$e->category->color.';">'.anchor('events/show/'.$e->id,ellipsize($e->title, 20,1,'..'),'id="'.$e->id.'" class="tip" data-toggle="modal" data-original-title="'.$e->title.'"').'</span>';
 			}
 
 			$data = array();
 			foreach($ul as $day => $event) {
-				$data[$day] = ul($event,array('class' => 'unstyled'));
+				$data[$day] = ul($event,array('class' => 'unstyled sortable'));
 			}
 
 			$this->data['calendar'] = $this->calendar->generate($y,$m,$data);

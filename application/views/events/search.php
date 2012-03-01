@@ -34,11 +34,11 @@
 <div class="pagination">
   <ul>
   	<?php if($events->paged->has_previous):?>
-    <li><?=anchor('products/search/'.$query.'/'.$events->paged->previous_page,'Previous')?></li>
+    <li><?=anchor('events/search/'.$query.'/'.$events->paged->previous_page,'Previous')?></li>
     <?php endif?>
     <li class="active"><a>Page <?=$events->paged->current_page?>/<?=$events->paged->total_pages?></a></li>
     <?php if($events->paged->has_next):?>
-    <li><?=anchor('products/search/'.$query.'/'.$events->paged->next_page,'Next')?></li>
+    <li><?=anchor('events/search/'.$query.'/'.$events->paged->next_page,'Next')?></li>
     <?php endif?>
   </ul>
 </div>

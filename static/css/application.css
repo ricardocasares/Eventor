@@ -1,6 +1,9 @@
 body {
     background: url(../img/bg.png);
 }
+.drag-hover {
+	background: #FFC;
+}
 marquee {
 	width:150px;
 	float:right;
