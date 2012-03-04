@@ -40,13 +40,15 @@
 
 $route['default_controller'] = "events/calendar";
 $route['calendar'] = "events/calendar";
+$route['events/(:num)'] = "events/index/$1";
+$route['calendar/(:num)/(:num)'] = "events/calendar/$1/$2";
 $route['login'] = "auth/login";
 $route['logout'] = "auth/logout";
 $route['upcoming'] = "events/upcoming";
-$route['config'] = "app/config";
+$route['upcoming/(:num)'] = "events/upcoming/$1";
+$route['categories/(:num)'] = "categories/index/$1";
+$route['settings'] = "settings/config";
 $route['404_override'] = '';
-
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
-
