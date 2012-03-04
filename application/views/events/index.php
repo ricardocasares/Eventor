@@ -13,7 +13,7 @@
 <?php foreach($events as $e):?>
 	<tr>
 		<td>
-			<span class="label" style="background:<?=$e->category->color?>"><?=$e->category->name?></span>
+			<span class="label" style="background:<?=$e->category_color?>"><?=$e->category_name?></span>
 			<?=anchor('events/edit/'.$e->id,$e->title)?>
 		</td>
 		<td>$<?=$e->cost?></td>
@@ -30,17 +30,27 @@
 	</tr>
 <?php endforeach?>
 </table>
-<?php if($events->paged->total_pages > 1):?>
-<div class="pagination">
-  <ul>
-  	<?php if($events->paged->has_previous):?>
-    <li><?=anchor('events/index/'.$events->paged->previous_page,'Anterior')?></li>
-    <?php endif?>
-    <li class="active"><a>Página <?=$events->paged->current_page?>/<?=$events->paged->total_pages?></a></li>
-    <?php if($events->paged->has_next):?>
-    <li><?=anchor('events/index/'.$events->paged->next_page,'Siguiente')?></li>
-    <?php endif?>
-  </ul>
+<div class="row-fluid">
+	<div class="span6">
+		<?php if($events->paged->total_pages > 1):?>
+		<div class="pagination">
+		  <ul>
+		  	<?php if($events->paged->has_previous):?>
+			<li><?=anchor('events/'.$events->paged->previous_page,'Anterior')?></li>
+			<?php endif?>
+			<li class="active"><a>Página <?=$events->paged->current_page?>/<?=$events->paged->total_pages?></a></li>
+			<?php if($events->paged->has_next):?>
+			<li><?=anchor('events/'.$events->paged->next_page,'Siguiente')?></li>
+			<?php endif?>
+		  </ul>
+		</div>
+		<?php else:?>
+			&nbsp;
+		<?php endif?>
+	</div>
+	<div class="span6">
+		<p class="pull-right">
+			<?=anchor('events/add','<i class="icon-plus"></i> Add event','class="btn"')?>
+		</p>
+	</div>
 </div>
-<?php endif?>
-

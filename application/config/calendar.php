@@ -3,7 +3,7 @@
 $config['day_type'] = 'long';
 
 $config['show_next_prev'] = TRUE;
-$config['next_prev_url'] = site_url('events/calendar');
+$config['next_prev_url'] = site_url('calendar');
 
 $config['template'] = '
 	{table_open}<table class="calendar table table-bordered">{/table_open}

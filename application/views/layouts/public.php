@@ -5,7 +5,7 @@
     <title>Eventor</title>
     <meta name="description" content="">
     <meta name="author" content="">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=1;" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=1.0; user-scalable=1;" />
 	<meta name="HandheldFriendly" content="True" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -14,11 +14,11 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <?=link_tag('static/css/application.css?v='.now())?>
-	<?=link_tag('static/css/calendar.css?v='.now())?>
-	<?=link_tag('static/css/jquery.miniColors.css?v='.now())?>
-	<?=link_tag('static/css/bootstrap.css?v='.now())?>
-	<?=link_tag('static/css/bootstrap-responsive.css?v='.now())?>
+    <?=link_tag('static/css/application.css')?>
+     <?=link_tag('static/css/calendar.css')?>
+     <?=link_tag('static/css/jquery.miniColors.css')?>
+    <?=link_tag('static/css/bootstrap.css')?>
+    <?=link_tag('static/css/bootstrap-responsive.css')?>
     <style type="text/css">
     	body {
     		padding:20px;

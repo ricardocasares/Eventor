@@ -180,7 +180,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------
@@ -370,7 +370,10 @@ function __autoload($class)
 {
 	if(strpos($class, 'CI_') !== 0)
 	{
-		@include_once( APPPATH . 'core/'. $class . EXT );
+		if (file_exists(APPPATH . 'core/'. $class . EXT))
+		{
+			@include_once( APPPATH . 'core/'. $class . EXT );	
+		}
 	}
 }
 

@@ -4,10 +4,12 @@
 
 		protected $allow = array();
 		protected $connected;
+		protected $user;
 
 		public function __construct()
 		{
 			parent::__construct();
+			$this->data['sess'] = $this->user = new User($this->session->userdata('id'));
 			$this->_is_connected();
 			$this->_init_acl();
 			$this->_authorize();
@@ -15,7 +17,7 @@
 
 		private function _is_connected()
 		{
-			if($this->session->userdata('id'))
+			if($this->user->id)
 			{
 				$this->connected = TRUE;
 			}
@@ -27,18 +29,21 @@
 
 		private function _init_acl()
 		{
-			if($this->connected && $this->session->userdata('admin'))
+			if($this->connected && $this->user->admin)
 			{
 				$this->allow = array(
 					'auth' => array('login','do_login','logout'),
+					'settings' => array('config'),
 					'events' => array('upcoming','drag','calendar','index','show','add','edit','delete','search','do_search'),
+					'users' => array('index','add','edit','delete','account','password'),
 					'categories' => array('index','add','edit','delete')
 				);
 			}
-			elseif($this->connected && !$this->session->userdata('admin'))
+			elseif($this->connected && !$this->user->admin)
 			{
 				$this->allow = array(
 					'auth' => array('login','do_login','logout'),
+					'users' => array('account','password'),
 					'events' => array('upcoming','drag','calendar','index','show','add','edit','search','do_search'),
 					'categories' => array('index','add','edit')
 				);

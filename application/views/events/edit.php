@@ -33,7 +33,7 @@
 			<?=form_input('eday',isset($_POST['eday']) ? $_POST['eday'] : $eday,'id="end" class="input-mini" placeholder="DD"')?>
 			<?=form_input('emonth',isset($_POST['emonth']) ? $_POST['emonth'] : $smonth,'class="input-mini" placeholder="MM"')?>
 			<?=form_input('eyear',isset($_POST['eyear']) ? $_POST['eyear'] : $eyear,'class="input-mini" placeholder="YYYY"')?>
-			<span class="help-inline"><?php echo isset($errors['end']) ? $errors['end'] : 'Enter event end date'; ?></span>
+			<span class="help-inline"><?php echo isset($errors['end']) ? $errors['end'] : '<span class="label">optional</span> Enter event end date'; ?></span>
 		</div>
 	</div>
 	<div class="control-group <?=(isset($errors['cost'])?'error':'')?>">
@@ -42,7 +42,7 @@
 			<div class="input-prepend">
 				<span class="add-on">$</span>
 				<?=form_input('cost',isset($_POST['cost']) ? $_POST['cost'] : $e->cost,'id="cost" class="input-small"')?>
-				<span class="help-inline"><?php echo isset($errors['cost']) ? $errors['cost'] : 'Enter event cost'; ?></span>
+				<span class="help-inline"><?php echo isset($errors['cost']) ? $errors['cost'] : '<span class="label">optional</span> Enter event cost'; ?></span>
 			</div>
 		</div>
 	</div>
@@ -52,7 +52,7 @@
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-map-marker"></i></span>
 				<?=form_input('address',isset($_POST['address']) ? $_POST['address'] : $e->address,'id="address" class="input-xlarge"')?>
-				<span class="help-inline"><?php echo isset($errors['address']) ? $errors['address'] : 'Enter event address'; ?></span>
+				<span class="help-inline"><?php echo isset($errors['address']) ? $errors['address'] : '<span class="label">optional</span> Enter event address'; ?></span>
 			</div>
 		</div>
 	</div>
@@ -62,7 +62,7 @@
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-map-marker"></i></span>
 				<?=form_input('coords',isset($_POST['coords']) ? $_POST['coords'] : '','id="coords" class="input-large"')?>
-				<span class="help-inline"><?php echo isset($errors['address']) ? $errors['address'] : 'Address latitude / longitude'; ?></span>
+				<span class="help-inline"><?php echo isset($errors['address']) ? $errors['address'] : '<span class="label">optional</span> Address latitude / longitude'; ?></span>
 			</div>
 			<div id="map"></div>
 		</div>

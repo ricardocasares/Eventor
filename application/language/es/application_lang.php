@@ -13,6 +13,7 @@
 	$lang['global_updated'] = "actualizado";
 
 	// Menúes
+	$lang['menu_upcoming'] = "Próximos eventos";
 	$lang['public_menu_home'] = "Inicio";
 	$lang['public_menu_tour'] = "Tour";
 	$lang['public_menu_plans'] = "Precios & planes";

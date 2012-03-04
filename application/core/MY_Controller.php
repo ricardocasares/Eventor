@@ -5,14 +5,16 @@
 		protected $data;
 		protected $view;
 		protected $layout;
-		protected $per_page = 10;
-
+		protected $settings;
+		
 		public function __construct()
 		{
 			parent::__construct();
 			$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
 			$this->output->set_header("Cache-Control: post-check=0, pre-check=0");
 			$this->output->set_header("Pragma: no-cache");
+			$this->output->enable_profiler(TRUE);
+			$this->data['settings'] = $this->settings = new Setting(1);
 			$this->_language();
 		}
 
@@ -26,7 +28,6 @@
 			} else {
 				show_404(strtolower(get_class($this)).'/'.$method);
 			}
-
 			$this->_load_view();
 		}
 
@@ -51,22 +52,7 @@
 
 		private function _language()
 		{
-			if($this->session->userdata('lang'))
-			{
-				$lang = $this->session->userdata('lang');
-			}
-			elseif($this->agent->accept_lang('en'))
-			{
-				$lang = 'en';
-			}
-			elseif($this->agent->accept_lang('es'))
-			{
-				$lang = 'es';
-			}
-			else $lang = 'en';
-			$this->language = $lang;
-			$this->lang->load('application',$lang);
-			$this->lang->load('form_validation',$lang);
+			$this->lang->load('application',$this->settings->language);
+			$this->lang->load('form_validation',$this->settings->language);
 		}
 	}
-

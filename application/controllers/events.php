@@ -2,15 +2,15 @@
 
 	class Events extends Backend_Controller {
 
-		function index($page = FALSE) {
+		function index($page = 0) {
 			$e = new Event();
-			$this->data['events'] = $e->get_paged_iterated($page,$this->per_page);
+			$this->data['events'] = $e->include_related('category',array('name','color'))->get_paged_iterated($page,$this->settings->per_page);
 		}
 
-		function upcoming($page = FALSE)
+		function upcoming($page = 0)
 		{
 			$e = new Event();
-			$this->data['upcoming'] = $this->data['upcoming'] = $e->where('DATEDIFF(DATE(start),DATE(NOW())) <=',7)->get_paged_iterated($page,$this->per_page);
+			$this->data['upcoming'] = $this->data['upcoming'] = $e->include_related('category',array('name','color'))->where('DATEDIFF(DATE(start),DATE(NOW())) <=',7)->get_paged_iterated($page,$this->settings->per_page);
 		}
 
 		function drag()
@@ -40,12 +40,12 @@
 			$y = ($y) ? $y : date('Y');
 			$m = ($m) ? $m : date('m');
 
-			$events = $e->select('DAY(start) AS day,id,title,description,cost')->where('MONTH(start)',$m)->where('YEAR(start)',$y)->get_iterated();
+			$events = $e->select('DAY(start) AS day,events.id,title,description,cost')->where('MONTH(start)',$m)->where('YEAR(start)',$y)->include_related('category',array('color'))->get_iterated();
 			$this->load->helper('text');
 
 			$ul = array();
 			foreach($events as $e) {
-				$ul[$e->day][] = '<span class="label" style="background:'.$e->category->color.';">'.anchor('events/show/'.$e->id,ellipsize($e->title, 20,1,'..'),'id="'.$e->id.'" class="tip" data-toggle="modal" data-original-title="'.$e->title.'"').'</span>';
+				$ul[$e->day][] = '<span class="label" style="background:'.$e->category_color.';">'.anchor('events/show/'.$e->id,ellipsize($e->title, 20,1,'..'),'id="'.$e->id.'" class="tip" data-toggle="modal" data-original-title="'.$e->title.'"').'</span>';
 			}
 
 			$data = array();
@@ -58,21 +58,21 @@
 			$this->data['categories'] = $c->get_iterated();
 		}
 
-		function do_search($page = FALSE)
+		function do_search()
 		{
 			$this->view = FALSE;
 			redirect('events/search/'.urlencode($this->input->post('query')));
 		}
 
-		function search($query = FALSE,$page = FALSE) {
+		function search($query = FALSE,$page = 0) {
 			$query = urldecode($query);
 			$e = new Event();
 
 			if($query) {
-				$this->data['events'] = $e->ilike('title',$query)->get_paged_iterated($page,$this->per_page);
+				$this->data['events'] = $e->include_related('category',array('name','color'))->ilike('title',$query)->get_paged_iterated($page,$this->settings->per_page);
 			}
 			else {
-				$this->data['events'] = $e->get_paged_iterated($page,$this->per_page);
+				$this->data['events'] = $e->include_related('category',array('name','color'))->get_paged_iterated($page,$this->settings->per_page);
 			}
 			$this->data['query'] = $query;
 		}
@@ -129,8 +129,8 @@
 		{
 			$this->layout = "layouts/ajax";
 			$this->load->helper('text');
-			$e = new Event($id);
-			$this->data['event'] = $e->get_iterated();
+			$e = new Event();
+			$this->data['event'] = $e->include_related('category',array('name','color'))->get_by_id($id);
 		}
 
 		function edit($id = FALSE)
@@ -185,19 +185,10 @@
 		}
 
 		function delete($id = FALSE) {
-			$p = new Product($id);
-			$m = new Movement();
-			$m->where('product_id',$p->id)->get()->delete_all();
-			$p->delete();
-			$this->session->set_flashdata('msg','<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a>El producto fué eliminado correctamente.</div>');
+			$e = new Event($id);
+			$e->delete();
+			$this->session->set_flashdata('msg','<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a>THe event was succesfully deleted.</div>');
 			redirect($this->agent->referrer());
 		}
 
-		function print_thresholds() {
-			$p = new Product();
-			$this->data['products'] = $p->where('existence <= threshold')->get_iterated();
-			$this->layout = "layouts/print";
-		}
-
 	}
-

@@ -24,14 +24,7 @@
 			{
 				if(sha1($_POST['password']) == $u->password)
 				{
-					$data = array(
-						'id' => $u->id,
-						'admin' => $u->admin,
-						'username' => $u->username,
-						'email' => $u->email,
-						'lang' => $u->language
-					);
-					$this->session->set_userdata($data);
+					$this->session->set_userdata(array('id' => $u->id));
 					redirect('upcoming');
 				}
 				else
@@ -60,4 +53,3 @@
 		}
 
 	}
-

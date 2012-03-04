@@ -5,7 +5,7 @@
     <title>Eventor</title>
     <meta name="description" content="">
     <meta name="author" content="">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=1;" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=1.0; user-scalable=1;" />
 	<meta name="HandheldFriendly" content="True" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -14,11 +14,11 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <?=link_tag('static/css/application.css?v='.now())?>
-     <?=link_tag('static/css/calendar.css?v='.now())?>
-     <?=link_tag('static/css/jquery.miniColors.css?v='.now())?>
-    <?=link_tag('static/css/bootstrap.css?v='.now())?>
-    <?=link_tag('static/css/bootstrap-responsive.css?v='.now())?>
+    <?=link_tag('static/css/application.css')?>
+     <?=link_tag('static/css/calendar.css')?>
+     <?=link_tag('static/css/jquery.miniColors.css')?>
+    <?=link_tag('static/css/bootstrap.css')?>
+    <?=link_tag('static/css/bootstrap-responsive.css')?>
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -35,35 +35,41 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<?=anchor('upcoming','eventor','class="brand"')?>
+				<?=anchor('upcoming',$settings->appname,'class="brand"')?>
 				<div class="nav-collapse">
 					<ul class="nav pills">
-						<li <?=active('upcoming')?>><?=anchor('upcoming','<i class="icon-asterisk icon-white"></i> Upcoming events')?></li>
-						<li <?=active('events/calendar')?>><?=anchor('events/calendar','<i class="icon-calendar icon-white"></i> Calendar')?></li>
+						<li <?=active('upcoming')?>><?=anchor('upcoming','<i class="icon-asterisk icon-white"></i> '.lang('menu_upcoming'))?></li>
+						<li <?=active('calendar')?>><?=anchor('calendar','<i class="icon-calendar icon-white"></i> Calendar')?></li>
 						<li class="dropdown" id="menu1">
 							<?=anchor('#menu1','<i class="icon-time icon-white"></i> Manage events <b class="caret"></b>','class="dropdown-toggle" data-toggle="dropdown"')?>
 							<ul class="dropdown-menu">
-								<li <?=active('events/index')?>><?=anchor('events/index','<i class="icon-th-list"></i> List all events')?></li>
-								<li <?=active('events/add')?>><?=anchor('events/add','<i class="icon-plus-sign"></i> Add an event')?></li>
-								<li class="divider"></li>
-								<li <?=active('categories/index')?>><?=anchor('categories/index','<i class="icon-th-list"></i> List categories')?></li>
-								<li <?=active('categories/add')?>><?=anchor('categories/add','<i class="icon-plus-sign"></i> Add category')?></li>
+								<li <?=active('events')?>><?=anchor('events/index','<i class="icon-th-list"></i> List all events')?></li>
+								<li <?=active('categories')?>><?=anchor('categories/index','<i class="icon-th-list"></i> List all categories')?></li>
 							</ul>
 						</li>
+						<?php if($sess->admin):?>
+						<li class="dropdown" id="menu2">
+							<?=anchor('#menu2','<i class="icon-cog icon-white"></i> Settings <b class="caret"></b>','class="dropdown-toggle" data-toggle="dropdown"')?>
+							<ul class="dropdown-menu">
+								<li <?=active('users')?>><?=anchor('users','<i class="icon-user"></i> Manage users')?></li>
+								<li <?=active('settings')?>><?=anchor('settings','<i class="icon-cog"></i> Application settings')?></li>
+							</ul>
+						</li>
+						<?php endif?>
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown" id="menu3">
-							<?=anchor('#menu3','<i class="icon-user icon-white"></i> '.$this->session->userdata('username').' <b class="caret"></b>','class="dropdown-toggle" data-toggle="dropdown"')?>
+							<?=anchor('#menu3','<i class="icon-user icon-white"></i> '.$sess->username.' <b class="caret"></b>','class="dropdown-toggle" data-toggle="dropdown"')?>
 							<ul class="dropdown-menu">
-								<li <?=active('app/help')?>><?=anchor('app/help','<i class="icon-question-sign"></i> '.lang('menu_help'))?></li>
-								<li <?=active('config')?>><?=anchor('config/#/profile','<i class="icon-cog"></i> '.lang('menu_config'))?></li>
+								<li <?=active('users/account')?>><?=anchor('users/account','<i class="icon-cog"></i> Account settings')?></li>
+								<li <?=active('users/password')?>><?=anchor('users/password','<i class="icon-lock"></i> Change password')?></li>
 								<li class="divider"></li>
 								<li><?=anchor('logout','<i class="icon-off"></i> '.lang('menu_logout'))?></li>
 							</ul>
 						</li>
 					</ul>
 					<?=form_open('events/do_search',array('class' => 'navbar-search pull-right'))?>
-						<?=form_input(array('name'=>'query','class'=>'search-query','placeholder'=>'Search'))?>
+						<?=form_input(array('name'=>'query','class'=>'search-query','placeholder'=>'Search event'))?>
 					<?=form_close()?>
 					<!--<p class="navbar-text pull-right">De nuevo por aquí <a href="#">ricardocasares</a>?</p>-->
 				</div><!--/.nav-collapse -->
@@ -94,29 +100,11 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		$("fieldset input:first").focus();
-    		$('.add').live('click',function(e){
-				e.preventDefault();
-				$('.clone:first').clone().appendTo('#log');
-			});
-			$('.remove').live('click',function(e){
-				e.preventDefault();
-				var rows = $('#log tr').size();
-				if(rows > 2) {
-					$(this).parent().parent().remove();
-				}
-			});
 
 			$('.danger').live('click', function(){
 				return confirm('Está seguro de realizar esta acción?');
 			});
-
-			$('a[href="#' + window.location.hash.substr(2) + '"]').click();
-
-			$('.nav-tabs a').on('shown', function (e) {
-				window.location.hash = '/' + e.target.hash.substr(1);
-			});
-
-			$('.pop').tooltip();
+			
 			$('.tip').tooltip();
 
 			$('.back').click(function(e){
@@ -129,7 +117,7 @@
               return $('#address').val();
             }
 
-			$('input#coords').geoLocationPicker({
+			$('#coords').geoLocationPicker({
               defaultAddressCallback: getAddress
             });
 

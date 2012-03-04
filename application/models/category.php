@@ -23,4 +23,3 @@ class Category extends DataMapper {
 
 /* End of file category.php */
 /* Location: ./application/models/category.php */
-

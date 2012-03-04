@@ -13,7 +13,7 @@
 <?php foreach($events as $e):?>
 	<tr>
 		<td>
-			<span class="label" style="background:<?=$e->category->color?>"><?=$e->category->name?></span>
+			<span class="label" style="background:<?=$e->category_color?>"><?=$e->category_name?></span>
 			<?=anchor('events/edit/'.$e->id,$e->title)?>
 		</td>
 		<td>$<?=$e->cost?></td>

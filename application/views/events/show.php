@@ -27,7 +27,7 @@
 						<?php if($event->cost):?>
 						<li><i class="icon-shopping-cart"></i> Cost <span class="pull-right">$<?=$event->cost?></span></li>
 						<?php endif?>
-						<li><i class="icon-tag"></i> Category <span class="pull-right"><span class="label" style="background: <?=$event->category->color?>"><?=$event->category->name?></span></span></li>
+						<li><i class="icon-tag"></i> Category <span class="pull-right"><span class="label" style="background: <?=$event->category_color?>"><?=$event->category_name?></span></span></li>
 					</ul>
 				</div>
 			</div>

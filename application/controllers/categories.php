@@ -1,9 +1,9 @@
 <?php
 	class Categories extends Backend_Controller {
 
-		function index() {
+		function index($page = 0) {
 			$c = new Category();
-			$this->data['categories'] = $c->get_iterated();
+			$this->data['categories'] = $c->include_related_count('events')->get_paged_iterated($page,$this->settings->per_page);
 		}
 
 		function add()
@@ -50,4 +50,3 @@
 		}
 
 	}
-

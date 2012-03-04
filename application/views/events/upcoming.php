@@ -13,7 +13,7 @@
 <?php foreach($upcoming as $e):?>
 	<tr>
 		<td>
-			<span class="label" style="background:<?=$e->category->color?>"><?=$e->category->name?></span>
+			<span class="label" style="background:<?=$e->category_color?>"><?=$e->category_name?></span>
 			<?=anchor('events/edit/'.$e->id,$e->title)?>
 		</td>
 		<td>$<?=$e->cost?></td>
@@ -36,11 +36,11 @@
 		<div class="pagination">
 		  <ul>
 		  	<?php if($upcoming->paged->has_previous):?>
-			<li><?=anchor('events/upcoming/'.$upcoming->paged->previous_page,'Anterior')?></li>
+			<li><?=anchor('upcoming/'.$upcoming->paged->previous_page,'Anterior')?></li>
 			<?php endif?>
 			<li class="active"><a>Página <?=$upcoming->paged->current_page?>/<?=$upcoming->paged->total_pages?></a></li>
 			<?php if($upcoming->paged->has_next):?>
-			<li><?=anchor('events/upcoming/'.$upcoming->paged->next_page,'Siguiente')?></li>
+			<li><?=anchor('upcoming/'.$upcoming->paged->next_page,'Siguiente')?></li>
 			<?php endif?>
 		  </ul>
 		</div>
@@ -50,9 +50,7 @@
 	</div>
 	<div class="span6">
 		<p class="pull-right">
-			<?=anchor('events/print_thresholds','<i class="icon-print"></i> Print upcoming events','class="btn"')?>
-			<?=anchor('events/print_thresholds','<i class="icon-envelope"></i> Send by email','class="btn"')?>
+			<?=anchor('events/add','<i class="icon-plus"></i> Add event','class="btn"')?>
 		</p>
 	</div>
 </div>
-

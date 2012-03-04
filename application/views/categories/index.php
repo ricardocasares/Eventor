@@ -12,7 +12,7 @@
 	<tr>
 		<td><?=$c->name?></td>
 		<td><span class="label" style="background:<?=$c->color?>"><?=$c->color?></span></td>
-		<td><?=$c->events->count()?></td>
+		<td><?=$c->event_count?></td>
 		<td>
 			<?=anchor('categories/edit/'.$c->id,'<i class="icon-pencil"></i> Edit','class="btn"')?>
 			<?php if($this->session->userdata('admin')):?>
@@ -22,4 +22,27 @@
 	</tr>
 <?php endforeach?>
 </table>
-
+<div class="row-fluid">
+	<div class="span6">
+		<?php if($categories->paged->total_pages > 1):?>
+		<div class="pagination">
+		  <ul>
+		  	<?php if($categories->paged->has_previous):?>
+			<li><?=anchor('categories/'.$categories->paged->previous_page,'Anterior')?></li>
+			<?php endif?>
+			<li class="active"><a>Página <?=$categories->paged->current_page?>/<?=$categories->paged->total_pages?></a></li>
+			<?php if($categories->paged->has_next):?>
+categories
+			<?php endif?>
+		  </ul>
+		</div>
+		<?php else:?>
+			&nbsp;
+		<?php endif?>
+	</div>
+	<div class="span6">
+		<p class="pull-right">
+			<?=anchor('categories/add','<i class="icon-plus"></i> Add category','class="btn"')?>
+		</p>
+	</div>
+</div>

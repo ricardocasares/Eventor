@@ -9,7 +9,7 @@
 	$lang['global_updated'] = "updated";
 	
 	// Menúes
-	$lang['public_menu_home'] = "Home";
+	$lang['menu_upcoming'] = "Upcoming events";
 	$lang['public_menu_tour'] = "Tour";
 	$lang['public_menu_plans'] = "Pricing & plans";
 	$lang['public_menu_contact'] = "Contact us";
