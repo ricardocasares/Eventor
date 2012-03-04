@@ -1,0 +1,11 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+if ( ! function_exists('active'))
+{
+    function active($link) {
+    	$CI =& get_instance();
+    	if($link == $CI->uri->uri_string()) {
+    		echo 'class="active"';
+    	}
+    }
+}

@@ -1,0 +1,37 @@
+<?php
+
+	class App extends MY_Controller {
+		
+		function help()
+		{
+			
+		}
+		
+		function config()
+		{
+			
+		}
+		
+		function change_lang($lang)
+		{
+			$this->session->set_userdata('lang',$lang);
+			redirect($this->agent->referrer());
+		}
+		
+		function test()
+		{
+			$this->view = FALSE;
+			
+			$u = new User();
+			$p = new Product();
+			$p->name = "PEPE";
+			$p->existence = 2;
+			$p->threshold = 1;
+			$p->measure_id = 3;
+			$p->save();
+			$u->where('username','ricardocasares')->get();
+			echo $u->save($p);
+#			echo $u->product->count();
+		}
+		
+	}

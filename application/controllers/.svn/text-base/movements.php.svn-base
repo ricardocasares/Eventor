@@ -1,0 +1,63 @@
+<?php
+	class Movements extends MY_Controller {
+	
+		function index($page = FALSE) {
+			$m = new Movement();
+			$this->data['movements'] = $m->get_paged_iterated($page,$this->per_page);
+		}
+		
+		function log() {
+			if ($_POST)
+			{
+				$i = 0;
+				foreach($_POST['product_id'] as $pid)
+				{
+					$m = new Movement();
+					$m->type_id = $_POST['type_id'];
+					$m->product_id = $pid;
+					$m->qty = $_POST['qty'][$i];
+					$m->validate();
+					if($m->valid) {
+						$m->save();	
+						$p = new Product($pid);
+						if($_POST['type_id'] == '0') {
+							$p->existence = $p->existence + $_POST['qty'][$i];
+						}
+						else
+						{
+							$p->existence = $p->existence - $_POST['qty'][$i];
+						}
+						$p->save();
+					}
+					else {
+						$this->session->set_flashdata('msg','<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a>Hubo un error al procesar los movimientos, examine el listado de movimientos para comprobar errores.</div>');
+						redirect('movements/index');
+					}
+					$i++;
+				}
+				$this->session->set_flashdata('msg','<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a>Los movimientos se registraron correctamente.</div>');
+				redirect('products/thresholds');
+			}
+			
+			$p = new Product();
+			$p->get_iterated();
+			foreach($p as $prdct) {
+				$this->data['products'][$prdct->id] = $prdct->name." - ".$prdct->measure->symbol;
+			}
+		}
+		
+		function delete($id = FALSE) {
+			$m = new Movement($id);
+			$p = new Product($m->product_id);
+			if($m->type_id === 0) {
+				$p->existence = $p->existence + $m->qty;	
+			}
+			else {
+				$p->existence = $p->existence - $m->qty;
+			}
+			$p->save();
+			$m->delete();
+			$this->session->set_flashdata('msg','<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a>El movimiento fué eliminado correctamente.</div>');
+			redirect('movements/index');
+		}
+	}

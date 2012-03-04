@@ -1,0 +1,39 @@
+<div class="page-header">
+	<h2>Editar producto</h2>
+</div>
+<?=form_open("products/edit/".$p->id,array('class' => 'form-horizontal'))?>
+	<?=form_fieldset('Ingrese los detalles del producto')?>
+	<div class="control-group <?=(isset($errors['name'])?'error':'')?>">
+		<?=form_label('Nombre del producto','name')?>
+		<div class="controls">
+			<?=form_input('name',isset($_POST['name']) ? $_POST['name'] : $p->name)?>
+			<span class="help-inline"><?php echo isset($errors['name']) ? $errors['name'] : 'Ingrese el nombre del producto'; ?></span>
+		</div>
+	</div>
+	<div class="control-group <?=(isset($errors['existence'])?'error':'')?>">
+		<?=form_label('Existencia','existence')?>
+		<div class="controls">
+			<?=form_input('existence', isset($_POST['existence']) ? $_POST['existence'] : $p->existence, 'class="span1"')?>
+			<span class="help-inline"><?php echo isset($errors['existence']) ? $errors['existence'] : 'Existencia inicial'; ?></span>
+		</div>
+	</div>
+	<div class="control-group <?=(isset($errors['threshold'])?'error':'')?>">
+		<?=form_label('Alerta','threshold')?>
+		<div class="controls">
+			<?=form_input('threshold', isset($_POST['threshold']) ? $_POST['threshold'] : $p->threshold, 'class="span1"')?>
+			<span class="help-inline"><?php echo isset($errors['threshold']) ? $errors['threshold'] : 'Notificar cuando se alcance este nivel'; ?></span>
+		</div>
+	</div>
+	<div class="control-group <?=(isset($errors['measure_id'])?'error':'')?>">
+		<?=form_label('Unidad de medida','measure_id')?>
+		<div class="controls">
+			<?=form_dropdown('measure_id',$measures,isset($_POST['measure_id']) ? $_POST['measure_id']:$p->measure_id)?>
+			<span class="help-inline"><?php echo isset($errors['measure_id']) ? $errors['measure_id'] : 'Unidad de medida del producto'; ?></span>
+		</div>
+	</div>
+	<?=form_fieldset_close()?>
+	<div class="form-actions">
+		<?=form_button(array('type' => 'submit', 'content' => 'Guardar producto', 'class' => 'btn btn-primary'))?>
+		<?=form_button(array('type' => 'reset', 'content' => 'Cancelar', 'class' => 'btn'))?>
+	</div>
+<?=form_close()?>

@@ -1,0 +1,19 @@
+<div class="page-header">
+	<h2>Unidades de medida</h2>
+</div>
+<table class="table table-bordered table-striped table-condensed">
+	<tr>
+		<th>Código</th>
+		<th>Unidad de medida</th>
+		<th>Símbolo</th>
+		<th>Acciones</th>
+	</tr>
+<?php foreach($measures as $m):?>
+	<tr>
+		<td><?=$m->id?></td>
+		<td><?=$m->name?></td>
+		<td><?=$m->symbol?></td>
+		<td><?=anchor('measures/edit/'.$m->id,'<i class="icon-pencil"></i> Editar','class="btn"')?> <?=anchor('measures/delete/'.$m->id,'<i class="icon-trash icon-white"></i> Eliminar','class="btn btn-danger danger"')?></td>
+	</tr>
+<?php endforeach?>
+</table>

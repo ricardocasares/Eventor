@@ -1,0 +1,31 @@
+<?php
+
+	class Site extends MY_Controller
+	{
+		protected $layout = "layouts/public";
+		
+		function index()
+		{
+
+		}
+		
+		function tour()
+		{
+		
+		}
+		
+		function pricing_and_plans()
+		{
+			
+		}
+		
+		function contact()
+		{
+			
+		}
+		
+		function login()
+		{
+			
+		}
+	}

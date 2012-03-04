@@ -1,0 +1,73 @@
+<?php
+
+	// Globales, son iguales para todos los modelos
+	$lang['global_email'] = "email";
+	$lang['global_website'] = "sitio web";
+	$lang['global_phone'] = "teléfono";
+	$lang['global_address'] = "dirección";
+	$lang['global_created'] = "creado";
+	$lang['global_updated'] = "actualizado";
+	
+	// Menúes
+	$lang['public_menu_home'] = "Accueil";
+	$lang['public_menu_tour'] = "Tour";
+	$lang['public_menu_plans'] = "Les prix & plans";
+	$lang['public_menu_contact'] = "Contacter";
+	$lang['public_menu_skype'] = "Appelez-nous gratuitement via Skype";
+	$lang['public_menu_login'] = "Login";
+	$lang['public_welcome'] = "Accueil";
+	$lang['public_tagline'] = "Stockr c'est notre simple application de stock qui peuvent vous simplifier la vie.";
+	$lang['public_description'] = "En aucun temps, vous saurez ce qu'il faut de votre entreprise grâce à des notifications par courrier électronique et les appareils mobiles d'être toujours attentif aux besoins de votre entreprise.";
+	$lang['public_button_start_tour'] = "Voir la tournée";
+	$lang['public_button_create_account'] = "Créer un compte gratuitement!";
+	$lang['public_button_learn'] = "En savoir plus";
+	$lang['public_label_new'] = "Nouveau";	
+	$lang['extremely_simple'] = "Extrêmement simple";
+	$lang['super_fast'] = "Super rapide";
+	$lang['wherever_you_are'] = "Où que vous soyez";
+	$lang['menu_alerts'] = "Alertas";
+	$lang['menu_products'] = "Productos";
+	$lang['menu_products_list_products'] = "Listar productos";
+	$lang['menu_products_add_product'] = "Agregar producto";
+	$lang['menu_products_list_movements'] = "Listar movimientos";
+	$lang['menu_products_log_movements'] = "Registrar movimientos";
+	$lang['menu_config'] = "Configuración";
+	$lang['menu_config_list_measures'] = "Listar unidades de medida";
+	$lang['menu_config_add_measure'] = "Agregar unidad de medida";
+	$lang['menu_lang'] = "Langue";
+	$lang['alert_change_lang'] = "La langue est enregistré dans les préférences.";
+	
+	// Modelo de productos
+	$lang['model_products_name'] = "nombre del producto";
+	$lang['model_products_name_hint'] = "ingrese el nombre del producto";
+	$lang['model_products_existence'] = "existencia";
+	$lang['model_products_existence_hint'] = "existencia inicial";
+	$lang['model_products_threshold'] = "alerta";
+	$lang['model_products_threshold_hint'] = "notificar cuando se alcance este nivel";
+	$lang['model_products_measure_id'] = "unidad de medida";
+	$lang['model_products_measure_id_hint'] = "cómo se mide el producto";
+	
+	
+	//Modelo de medidas
+	$lang['model_measures_name'] = "nombre de la unidad";
+	$lang['model_measures_name_hint'] = "el nombre de la unidad";
+	$lang['model_measures_symbol'] = "símbolo";
+	$lang['model_measures_symbol_hint'] = "el símbolo de la unidad";
+	
+	// Modelo de usuarios
+	$lang['model_users_username'] = "nombre de usuario";
+	$lang['model_users_password'] = "clave";
+	$lang['model_users_name'] = "nombre completo";
+	
+	// Modelo de empresas
+	$lang['model_company_name'] = "nombre de la empresa";
+	
+	// Modelo de grupos
+	$lang['model_groups_name'] = "nombre del grupo";
+
+	// Modelo de movimientos
+	$lang['model_movements_qty'] = "cantidad";
+	$lang['model_movements_type_id'] = "tipo de movimiento";
+	$lang['model_movements_type_in'] = "entrada";
+	$lang['model_movements_type_out'] = "salida";
+	

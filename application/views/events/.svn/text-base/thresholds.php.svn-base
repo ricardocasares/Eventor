@@ -1,0 +1,44 @@
+<div class="page-header">
+	<h2>Alertas</h2>
+</div>
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>Código</th>
+		<th>Producto</th>
+		<th>Existencia</th>
+		<th>Alerta</th>
+	</tr>
+<?php foreach($products as $p):?>
+	<tr>
+		<td><?=$p->id?></td>
+		<td><?=anchor('products/edit/'.$p->id,$p->name)?></td>
+		<td><?=$p->existence?> <abbr title="<?=$p->measure->name?>"><?=$p->measure->symbol?></abbr></td>
+		<td><?=$p->threshold?> <abbr title="<?=$p->measure->name?>"><?=$p->measure->symbol?></abbr></td>
+	</tr>
+<?php endforeach?>
+</table>
+<div class="row-fluid">
+	<div class="span6">
+		<?php if($products->paged->total_pages > 1):?>
+		<div class="pagination">
+		  <ul>
+		  	<?php if($products->paged->has_previous):?>
+			<li><?=anchor('products/thresholds/'.$products->paged->previous_page,'Anterior')?></li>
+			<?php endif?>
+			<li class="active"><a>Página <?=$products->paged->current_page?>/<?=$products->paged->total_pages?></a></li>
+			<?php if($products->paged->has_next):?>
+			<li><?=anchor('products/thresholds/'.$products->paged->next_page,'Siguiente')?></li>
+			<?php endif?>
+		  </ul>
+		</div>
+		<?php else:?>
+			&nbsp;
+		<?php endif?>
+	</div>
+	<div class="span6">
+		<p class="pull-right">
+			<?=anchor('products/print_thresholds','<i class="icon-print"></i> Imprimir listado','class="btn"')?>
+			<?=anchor('products/print_thresholds','<i class="icon-envelope"></i> Enviar por email','class="btn"')?>
+		</p>
+	</div>
+</div>

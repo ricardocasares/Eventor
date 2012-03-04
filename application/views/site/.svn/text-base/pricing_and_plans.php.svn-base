@@ -1,0 +1,98 @@
+<h2><?=lang('public_menu_plans')?></h2>
+<hr />
+<div class="row-fluid">
+	<div class="span3">
+		<div class="thumbnail">
+			<img src="http://placehold.it/405x180" alt="">
+			<div class="caption">
+				<h5>Starter</h5>
+				<p>Es nuestro plan gratuito, con el cual podrás empezar a probar y familiarizarte con <strong>Stockr</strong>.</p>
+				<p><a href="#" class="btn btn-primary btn-success"><i class="icon-shopping-cart icon-white"></i> Gratis</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="thumbnail">
+			<img src="http://placehold.it/405x180" alt="">
+			<div class="caption">
+				<h5>Soho</h5>
+				<p>Es el plan perfecto para las pequeñas y medianas empresas que se encuentran en pleno crecimiento.</p>
+				<p><a href="#" class="btn btn-primary btn-success"><i class="icon-shopping-cart icon-white"></i> $100/mes</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="thumbnail">
+			<img src="http://placehold.it/405x180" alt="">
+			<div class="caption">
+				<h5>Business</h5>
+				<p>Pensado para empresas con un gran movimiento de entrada y salida de productos.</p>
+				<p><a href="#" class="btn btn-primary btn-success"><i class="icon-shopping-cart icon-white"></i> $200/mes</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="thumbnail">
+			<img src="http://placehold.it/405x180" alt="">
+			<div class="caption">
+				<h5>Pro</h5>
+				<p>Configura <strong>Stockr</strong> como tú quieras, crea usuarios, productos y sucursales sin ningún límite.</p>
+				<p><a href="#" class="btn btn-primary btn-success"><i class="icon-shopping-cart icon-white"></i> $400/mes</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="page-header">
+	<h3>Comparación de planes</h3>
+</div>
+<table class="table table-striped table-bordered table-center">
+	<tr>
+		<th></th>
+		<th>Starter</th>
+		<th>Soho</th>
+		<th>Business</th>
+		<th>Pro</th>
+	</tr>
+	<tr>
+		<th>Límite de usuarios</th>
+		<td>1</td>
+		<td>3</td>
+		<td>6</td>
+		<td>&infin;</td>
+	</tr>
+	<tr>
+		<th>Límite de sucursales</th>
+		<td>1</td>
+		<td>3</td>
+		<td>6</td>
+		<td>&infin;</td>
+	</tr>
+	<tr>
+		<th>Límite de productos</th>
+		<td>10</td>
+		<td>100</td>
+		<td>&infin;</td>
+		<td>&infin;</td>
+	</tr>
+	<tr>
+		<th>Acceso móvil</th>
+		<td><i class="icon-ban-circle"></i></td>
+		<td><i class="icon-ok-sign"></i></td>
+		<td><i class="icon-ok-sign"></i></td>
+		<td><i class="icon-ok-sign"></i></td>		
+	</tr>
+	<tr>
+		<th>Soporte técnico</th>
+		<td><i class="icon-ban-circle"></i></td>
+		<td>Vía email</td>
+		<td>Vía email & Skype</td>
+		<td>Vía email & Skype</td>		
+	</tr>
+	<tr>
+		<th></th>
+		<td><p><a href="#" class="btn btn-primary btn-success">Gratis!!</a></p></td>
+		<td><p><a href="#" class="btn btn-primary btn-success"><i class="icon-shopping-cart icon-white"></i> $100/mes</a></p></td>
+		<td><p><a href="#" class="btn btn-primary btn-success"><i class="icon-shopping-cart icon-white"></i> $200/mes</a></p></td>
+		<td><p><a href="#" class="btn btn-primary btn-success"><i class="icon-shopping-cart icon-white"></i> $400/mes</a></p></td>		
+	</tr>
+</table>

@@ -1,0 +1,63 @@
+<?php
+	class Measures extends MY_Controller {
+	
+		function index() {
+			$m = new Measure();
+			$this->data['measures'] = $m->get_iterated();
+		}
+		
+		function add()
+		{
+			if($_POST) {
+				$m = new Measure();
+				$m->from_array($_POST,array('name','symbol'));
+				$m->validate();
+				if($m->valid) {
+					$m->save();
+					$this->session->set_flashdata('msg','<div class="alert alert-success">La unidad de medida fué agregada correctamente.</div>');
+					if(isset($_POST['continue'])) {
+						redirect('measures/add');
+					}
+					else {
+						redirect($this->agent->referrer());
+					}
+				}
+				else {
+					$this->data['errors'] = $m->error->all;
+				}
+			}
+			
+			$measures = new Measure();
+			$measures->get_iterated();
+			$this->data['measures'][''] = "Elija la unidad de medida";
+			foreach($measures as $m) {
+				$this->data['measures'][$m->id] = $m->name." - ".$m->symbol;
+			}
+		}
+		
+		function edit($id = FALSE)
+		{
+			if($_POST) {
+				$m = new Measure($id);
+				$m->from_array($_POST,array('name','symbol'));
+				$m->validate();
+				if($m->valid) {
+					$m->save();
+					$this->session->set_flashdata('msg','<div class="alert alert-success">La unidad de medida fué editada correctamente.</div>');
+					redirect($this->agent->referrer());
+				}
+				else {
+					$this->data['errors'] = $m->error->all;
+				}
+			}
+			$this->data['m'] = new Measure($id);
+		}
+		
+		function delete($id = FALSE) {
+			$m = new Measure($id);
+			$m->delete();
+			$this->session->set_flashdata('msg','<div class="alert alert-success">La unidad de medida fué eliminada correctamente.</div>');
+			redirect($this->agent->referrer());
+		}
+	
+	}

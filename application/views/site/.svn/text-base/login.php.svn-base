@@ -1,0 +1,8 @@
+<div class="page-header">
+	<h2>Iniciar sesión</h2>
+</div>
+<?=form_open('products/thresholds',array('class' => 'well form-inline'))?>
+  <input type="text" class="input" placeholder="Email">
+  <input type="password" class="input" placeholder="Password">
+  <button type="submit" class="btn">Iniciar sesión</button>
+</form>

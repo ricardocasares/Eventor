@@ -1,0 +1,25 @@
+<div class="page-header">
+	<h2>Editar unidad de medida</h2>
+</div>
+<?=form_open("measures/edit/".$m->id,array('class' => 'form-horizontal'))?>
+	<?=form_fieldset('Ingrese los detalles de la unidad')?>
+	<div class="control-group <?=(isset($errors['name'])?'error':'')?>">
+		<?=form_label('Nombre','name')?>
+		<div class="controls">
+			<?=form_input('name',isset($_POST['name']) ? $_POST['name'] : $m->name)?>
+			<span class="help-inline"><?php echo isset($errors['name']) ? $errors['name'] : 'El nombre de la unidad de medida'; ?></span>
+		</div>
+	</div>
+	<div class="control-group <?=(isset($errors['symbol'])?'error':'')?>">
+		<?=form_label('Símbolo','symbol')?>
+		<div class="controls">
+			<?=form_input('symbol',isset($_POST['symbol']) ? $_POST['symbol'] : $m->symbol)?>
+			<span class="help-inline"><?php echo isset($errors['symbol']) ? $errors['symbol'] : 'Símbolo de la unidad. Ej: Kg, Cm, Mts, Lts, etc...'; ?></span>
+		</div>
+	</div>
+	<?=form_fieldset_close()?>
+	<div class="form-actions">
+		<?=form_button(array('type' => 'submit', 'content' => 'Guardar producto', 'class' => 'btn btn-primary'))?>
+		<?=form_button(array('type' => 'reset', 'content' => 'Cancelar', 'class' => 'btn'))?>
+	</div>
+<?=form_close()?>

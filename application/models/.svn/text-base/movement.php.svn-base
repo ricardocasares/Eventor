@@ -1,0 +1,32 @@
+<?php
+
+class Movement extends DataMapper {
+	
+	var $has_one = array('product');
+	
+	var $validation = array(
+		'type_id' => array(
+			'rules' => array('required')
+		),
+		'product_id' => array(
+			'rules' => array('required')
+		),
+		'qty' => array(
+			'rules' => array('required','numeric')
+		),
+		'created' => array(
+			'get_rules' => array('strtotime')
+		)
+	);
+		
+	var $default_order_by = array('created' => 'desc');
+
+    function __construct($id = NULL)
+	{
+		parent::__construct($id);
+    }
+
+}
+
+/* End of file product.php */
+/* Location: ./application/models/product.php */

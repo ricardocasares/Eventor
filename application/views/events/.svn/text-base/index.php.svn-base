@@ -1,0 +1,37 @@
+<div class="page-header">
+	<h2>Productos</h2>
+</div>
+<table class="table table-bordered table-striped table-condensed">
+	<tr>
+		<th>Código</th>
+		<th>Producto</th>
+		<th>Existencia</th>
+		<th>Alerta</th>
+		<th>Acciones</th>
+	</tr>
+<?php foreach($products as $p):?>
+	<tr>
+		<td><?=$p->id?></td>
+		<td>
+			<?=$p->name?>
+			<?=($p->existence<=$p->threshold) ? '<span class="label label-important">Critico</span>' : ''?>
+		</td>
+		<td><?=$p->existence?> <abbr title="<?=$p->measure->name?>"><?=$p->measure->symbol?></abbr></td>
+		<td><?=$p->threshold?> <abbr title="<?=$p->measure->name?>"><?=$p->measure->symbol?></abbr></td>
+		<td><?=anchor('products/edit/'.$p->id,'<i class="icon-pencil"></i> Editar','class="btn"')?> <?=anchor('products/delete/'.$p->id,'<i class="icon-trash icon-white"></i> Eliminar','class="danger btn btn-danger"')?></td>
+	</tr>
+<?php endforeach?>
+</table>
+<?php if($products->paged->total_pages > 1):?>
+<div class="pagination">
+  <ul>
+  	<?php if($products->paged->has_previous):?>
+    <li><?=anchor('products/index/'.$products->paged->previous_page,'Anterior')?></li>
+    <?php endif?>
+    <li class="active"><a>Página <?=$products->paged->current_page?>/<?=$products->paged->total_pages?></a></li>
+    <?php if($products->paged->has_next):?>
+    <li><?=anchor('products/index/'.$products->paged->next_page,'Siguiente')?></li>
+    <?php endif?>
+  </ul>
+</div>
+<?php endif?>

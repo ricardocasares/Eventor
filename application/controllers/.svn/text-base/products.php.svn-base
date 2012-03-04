@@ -1,0 +1,103 @@
+<?php
+	
+	class Products extends MY_Controller {
+	
+		function index($page = FALSE) {
+			$p = new Product();
+			$this->data['products'] = $p->get_paged_iterated($page,$this->per_page);
+		}
+		
+		function thresholds($page = FALSE)
+		{
+			$p = new Product();
+			$this->data['products'] = $p->where('existence <= threshold')->get_paged_iterated($page,$this->per_page);
+		}
+		
+		function do_search($page = FALSE)
+		{
+			$this->view = FALSE;
+			redirect('products/search/'.urlencode($this->input->post('query')));
+		}
+		
+		function search($query = FALSE,$page = FALSE) {
+			$query = urldecode($query);
+			$p = new Product();
+			
+			if($query) {
+				$this->data['products'] = $p->ilike('name',$query)->get_paged_iterated($page,$this->per_page);
+			}
+			else {
+				$this->data['products'] = $p->get_paged_iterated($page,$this->per_page);
+			}
+			$this->data['query'] = $query;
+		}
+		
+		function add()
+		{
+			if($_POST) {
+				$p = new Product();
+				$p->from_array($_POST,array('measure_id','name','existence','threshold'));
+				if($p->save())
+				{
+					$this->session->set_flashdata('msg','<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a>El producto fué agregado correctamente.</div>');
+					if (isset($_POST['continue']))
+					{
+						redirect('products/add');	
+					}
+					else {
+						redirect('products/index');
+					}
+				}
+				else {
+					$this->data['errors'] = $p->error->all;
+				}
+			}
+			
+			$measures = new Measure();
+			$measures->get_iterated();
+			$this->data['measures'][''] = "Elija la unidad de medida";
+			foreach($measures as $m) {
+				$this->data['measures'][$m->id] = $m->name." - ".$m->symbol;
+			}
+		}
+		
+		function edit($id = FALSE)
+		{
+			if($_POST) {
+				$p = new Product($id);
+				$p->from_array($_POST,array('measure_id','name','existence','threshold'));
+				$p->validate();
+				if($p->valid) {
+					$p->save();
+					$this->session->set_flashdata('msg','<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a> El producto fué editado correctamente.</div>');
+					redirect($this->agent->referrer());
+				}
+				else {
+					$this->data['errors'] = $p->error->all;
+				}
+			}
+			$this->data['p'] = new Product($id);
+			$m = new Measure();
+			$m->get_iterated();
+			$this->data['measures'][''] = "Elija la unidad de medida";
+			foreach($m as $measure) {
+				$this->data['measures'][$measure->id] = $measure->name." - ".$measure->symbol;
+			}
+		}
+		
+		function delete($id = FALSE) {
+			$p = new Product($id);
+			$m = new Movement();
+			$m->where('product_id',$p->id)->get()->delete_all();
+			$p->delete();
+			$this->session->set_flashdata('msg','<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a>El producto fué eliminado correctamente.</div>');
+			redirect($this->agent->referrer());
+		}
+		
+		function print_thresholds() {
+			$p = new Product();
+			$this->data['products'] = $p->where('existence <= threshold')->get_iterated();
+			$this->layout = "layouts/print";
+		}
+			
+	}
