@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'a.db.shared.orchestra.io';
-$db['default']['username'] = 'user_d792882f';
-$db['default']['password'] = 'JI@Klx6NswpNSu';
-$db['default']['database'] = 'db_d792882f';
+$db['default']['hostname'] = '';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
+$db['default']['database'] = '';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
